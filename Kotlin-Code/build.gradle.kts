@@ -1,43 +1,53 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    id("org.springframework.boot") version "2.7.5"
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
     kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
 }
 
-group = "com.example"
-version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+subprojects {
 
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
+    apply {
+        plugin("org.jetbrains.kotlin.jvm")
+        version = "1.6.21"
+    }
+
+    apply {
+        plugin("org.jetbrains.kotlin.kapt")
+        version = "1.7.10"
+    }
+
+    dependencies {
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1")
+        implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.20")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.20")
+    }
+
+}
+
+allprojects {
+    group = "com.example"
+    version = "0.0.1-SNAPSHOT"
+
+    tasks {
+        compileKotlin {
+            kotlinOptions {
+                freeCompilerArgs = listOf("-Xjsr305=strict")
+                jvmTarget = "11"
+            }
+        }
+
+        compileJava {
+            sourceCompatibility = JavaVersion.VERSION_11.majorVersion
+        }
+
+        test {
+            useJUnitPlatform()
+        }
+    }
+
+    repositories {
+        mavenCentral()
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
-    }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
+tasks.getByName<Jar>("jar") {
+    enabled = false
 }

@@ -7,6 +7,8 @@ enum class ErrorCode(
         override val message: String
 ) : ErrorResponse {
 
+    USER_EXIST(409, "User Exist"),
+
     INTERNAL_SERVER_ERROR(500, "Internal Server Error")
 
 }

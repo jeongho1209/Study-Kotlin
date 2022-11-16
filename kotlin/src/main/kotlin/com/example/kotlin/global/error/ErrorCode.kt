@@ -11,8 +11,10 @@ enum class ErrorCode(
     INVALID_TOKEN(401, "Invalid Token"),
     EXPIRED_TOKEN(401, "Expired Token"),
     UNEXPECTED_TOKEN(401, "Unexpected Token"),
+    CANNOT_DELETE_FEED(401, "Cannot Delete Feed"),
 
     USER_NOT_FOUND(404, "User Not Found"),
+    FEED_NOT_FOUND(404, "Feed Not Found"),
 
     USER_EXIST(409, "User Exist"),
 

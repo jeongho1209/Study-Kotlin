@@ -1,27 +1,28 @@
 package com.example.kotlin.domain.user.service
 
-import com.example.kotlin.domain.user.domain.UserRepository
 import com.example.kotlin.domain.user.exception.PasswordMisMatchException
 import com.example.kotlin.domain.user.facade.UserFacade
 import com.example.kotlin.domain.user.presentation.dto.request.UserSignInRequest
+import com.example.kotlin.domain.user.presentation.dto.response.TokenResponse
+import com.example.kotlin.global.security.jwt.JwtTokenProvider
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class UserSignInService(
-        private val userRepository: UserRepository,
+        private val jwtTokenProvider: JwtTokenProvider,
         private val passwordEncoder: PasswordEncoder,
         private val userFacade: UserFacade
 ) {
 
-    fun signIn(request: UserSignInRequest): String {
+    fun execute(request: UserSignInRequest): TokenResponse {
         val user = userFacade.getByAccountId(request.accountId)
 
         if (!passwordEncoder.matches(request.password, user.password)) {
             throw PasswordMisMatchException.EXCEPTION
         }
 
-        return "success"
+        return jwtTokenProvider.getToken(request.accountId)
     }
 
 }

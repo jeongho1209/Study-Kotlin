@@ -8,6 +8,9 @@ enum class ErrorCode(
 ) : ErrorResponse {
 
     PASSWORD_MIS_MATCH(401, "Password Mis Match"),
+    INVALID_TOKEN(401, "Invalid Token"),
+    EXPIRED_TOKEN(401, "Expired Token"),
+    UNEXPECTED_TOKEN(401, "Unexpected Token"),
 
     USER_NOT_FOUND(404, "User Not Found"),
 

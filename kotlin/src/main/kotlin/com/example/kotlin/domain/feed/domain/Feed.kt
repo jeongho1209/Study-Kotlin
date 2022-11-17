@@ -21,9 +21,12 @@ class Feed(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = id
 
+    @Column(nullable = false, length = 20)
     var title = title
         protected set
 
+    @Column(nullable = false, length = 1000)
     var content = content
         protected set
+
 }

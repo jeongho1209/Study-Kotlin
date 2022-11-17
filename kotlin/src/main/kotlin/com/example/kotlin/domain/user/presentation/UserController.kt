@@ -2,7 +2,9 @@ package com.example.kotlin.domain.user.presentation
 
 import com.example.kotlin.domain.user.presentation.dto.request.UserSignInRequest
 import com.example.kotlin.domain.user.presentation.dto.request.UserSignUpRequest
+import com.example.kotlin.domain.user.presentation.dto.response.QueryMyInfoResponse
 import com.example.kotlin.domain.user.presentation.dto.response.TokenResponse
+import com.example.kotlin.domain.user.service.QueryMyInfoService
 import com.example.kotlin.domain.user.service.UserSignInService
 import com.example.kotlin.domain.user.service.UserSignUpService
 import com.example.kotlin.domain.user.service.UserWithdrawalService
@@ -15,7 +17,8 @@ import javax.validation.Valid
 class UserController(
         private val userSignInService: UserSignInService,
         private val userSignUpService: UserSignUpService,
-        private val userWithdrawalService: UserWithdrawalService
+        private val userWithdrawalService: UserWithdrawalService,
+        private val queryMyInfoService: QueryMyInfoService,
 ) {
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -33,6 +36,11 @@ class UserController(
     @DeleteMapping
     fun deleteUser() {
         userWithdrawalService.execute()
+    }
+
+    @GetMapping
+    fun queryUserInfo(): QueryMyInfoResponse {
+        return queryMyInfoService.execute()
     }
 
 }

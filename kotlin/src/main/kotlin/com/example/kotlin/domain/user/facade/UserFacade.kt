@@ -20,4 +20,8 @@ class UserFacade(
         return getByAccountId(userAccountId)
     }
 
+    fun checkExistUser(accountId: String): Boolean {
+        return userRepository.existsByAccountId(accountId)
+    }
+
 }

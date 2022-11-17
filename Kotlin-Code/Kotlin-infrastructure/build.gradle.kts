@@ -32,6 +32,16 @@ dependencies {
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 }
 
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+}
+
+noArg {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+}
+
 tasks.getByName<Jar>("jar") {
     enabled = false
 }

@@ -3,7 +3,7 @@ package com.example.kotlincode.domain.feed.mapper
 import com.example.kotlincode.domain.GenericMapper
 import com.example.kotlincode.domain.feed.domain.Feed
 import com.example.kotlincode.domain.feed.persistence.entity.FeedEntity
-import com.example.kotlincode.domain.user.persistence.entity.UserRepository
+import com.example.kotlincode.domain.user.persistence.UserRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 

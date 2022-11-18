@@ -15,9 +15,9 @@ subprojects {
     }
 
     dependencies {
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1")
-        implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.20")
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.20")
+        implementation(Dependency.JACKSON)
+        implementation(Dependency.REFLECT)
+        implementation(Dependency.STDLIB_JDK8)
     }
 
 }

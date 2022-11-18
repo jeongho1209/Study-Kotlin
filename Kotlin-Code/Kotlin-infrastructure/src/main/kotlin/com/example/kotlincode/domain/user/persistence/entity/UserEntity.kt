@@ -1,30 +1,23 @@
 package com.example.kotlincode.domain.user.persistence.entity
 
+import com.example.kotlincode.global.entity.BaseIdEntity
 import org.hibernate.validator.constraints.Length
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
 import javax.validation.constraints.NotNull
 
 @Entity
 class UserEntity(
-        id: Long?,
-        accountId: String,
+        override val id: Long,
+
+        @field:NotNull
+        @Column(unique = true)
+        @Length(max = 20)
+        val accountId: String,
+
         password: String,
         username: String
-) {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = id
-
-    @field:NotNull
-    @Column(unique = true)
-    @Length(max = 20)
-    var accountId: String = accountId
-        protected set
+) : BaseIdEntity() {
 
     @field:NotNull
     @Length(max = 60)

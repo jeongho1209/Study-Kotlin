@@ -23,7 +23,7 @@ class UserSignUpService(
 
         userRepository.save(
                 User(
-                        id = null,
+                        id = 0,
                         accountId = request.accountId,
                         password = passwordEncoder.encode(request.password))
         )

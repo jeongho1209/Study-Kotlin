@@ -20,7 +20,7 @@ class CreateFeedService(
 
         feedRepository.save(
                 Feed(
-                        id = null,
+                        id = 0,
                         title = request.title,
                         content = request.content,
                         user = user,

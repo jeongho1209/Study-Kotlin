@@ -10,6 +10,6 @@ abstract class BaseIdEntity (
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    open val id: Long
+    open val id: Long = 0
 
 )

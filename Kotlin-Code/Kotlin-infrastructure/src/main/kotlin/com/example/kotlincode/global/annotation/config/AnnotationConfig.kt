@@ -1,4 +1,4 @@
-package com.example.kotlincode.global.annotation
+package com.example.kotlincode.global.annotation.config
 
 import com.example.kotlincode.annotation.ReadOnlyUseCase
 import com.example.kotlincode.annotation.UseCase

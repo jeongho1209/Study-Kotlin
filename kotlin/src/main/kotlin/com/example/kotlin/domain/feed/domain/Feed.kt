@@ -1,32 +1,46 @@
 package com.example.kotlin.domain.feed.domain
 
 import com.example.kotlin.domain.user.domain.User
-import com.example.kotlin.global.entity.BaseTimeEntity
+import com.example.kotlin.global.entity.BaseIdEntity
+import org.hibernate.validator.constraints.Length
+import org.springframework.data.annotation.CreatedDate
 import java.time.LocalDateTime
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
+import javax.validation.constraints.NotNull
 
 @Entity
 class Feed(
-        id: Long?,
+
+        override val id: Long,
+
         title: String,
         content: String,
-        override val createdAt: LocalDateTime,
+
+        @field:NotNull
+        @CreatedDate
+        val createdAt: LocalDateTime = LocalDateTime.now(),
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id", nullable = false)
         val user: User
-) : BaseTimeEntity(createdAt) {
+) : BaseIdEntity() {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = id
-
-    @Column(nullable = false, length = 20)
+    @field:NotNull
+    @Length(max = 20)
     var title = title
         protected set
 
-    @Column(nullable = false, length = 1000)
+    @field:NotNull
+    @Length(max = 1000)
     var content = content
         protected set
+
+    fun updateFeed(title: String, content: String) {
+        this.title = title
+        this.content = content
+    }
 
 }

@@ -4,4 +4,5 @@ object DependencyVersion {
     const val QUERYDSL = "5.0.0"
     const val OPENFEIGN = "3.1.4"
     const val TRANSACTION = "5.3.23"
+    const val JACKSON_VERSION = "2.10.3"
 }

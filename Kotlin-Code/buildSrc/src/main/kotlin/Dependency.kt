@@ -7,7 +7,7 @@ object Dependency {
     const val WEB = "org.springframework.boot:spring-boot-starter-web"
 
     // jackson
-    const val JACKSON = "com.fasterxml.jackson.module:jackson-module-kotlin"
+    const val JACKSON = "com.fasterxml.jackson.module:jackson-module-kotlin:${DependencyVersion.JACKSON_VERSION}"
 
     // jpa
     const val JPA = "org.springframework.boot:spring-boot-starter-data-jpa"

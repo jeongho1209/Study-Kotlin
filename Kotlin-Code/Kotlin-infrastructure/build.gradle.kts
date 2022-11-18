@@ -1,8 +1,8 @@
 plugins {
-    id("org.springframework.boot") version "2.7.4"
-    id("io.spring.dependency-management") version "1.0.14.RELEASE"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
+    id("org.springframework.boot") version PluginVersions.SPRING_BOOT_FRAMEWORK_VERSION
+    id("io.spring.dependency-management") version PluginVersions.SPRING_DEPENDENCY_MANAGEMENT_VERSION
+    kotlin("plugin.spring") version PluginVersions.PLUGIN_SPRING_VERSION
+    kotlin("plugin.jpa") version PluginVersions.PLUGIN_JPA_VERSION
 }
 
 dependencies {
@@ -11,25 +11,29 @@ dependencies {
     implementation(project(":Kotlin-domain"))
 
     // jpa
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation(Dependency.JPA)
 
     // db-connector
-    implementation("org.springframework.boot:spring-boot-starter-data-redis")
-    runtimeOnly("mysql:mysql-connector-java")
+    implementation(Dependency.REDIS)
+    runtimeOnly(Dependency.MYSQL)
 
     // web
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation(Dependency.WEB)
 
     // security
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation(Dependency.SPRING_SECURITY)
+
+    // property
+    implementation(Dependency.PROPERTIES_SCAN)
 
     // validation
-    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation(Dependency.VALIDATION)
 
     // jwt
-    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
-    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
-    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+    implementation(Dependency.JWT)
+
+    // transaction
+    implementation(Dependency.TRANSACTION)
 }
 
 allOpen {

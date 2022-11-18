@@ -1,4 +1,4 @@
-package com.example.kotlincode.domain.text.persistence
+package com.example.kotlincode.domain.text.persistence.entity
 
 import com.example.kotlincode.domain.user.persistence.entity.UserEntity
 import com.example.kotlincode.global.entity.BaseIdEntity
@@ -7,9 +7,11 @@ import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn
 import javax.persistence.OneToOne
+import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
 @Entity
+@Table(name = "tbl_text")
 class TextEntity(
         override val id: Long,
 

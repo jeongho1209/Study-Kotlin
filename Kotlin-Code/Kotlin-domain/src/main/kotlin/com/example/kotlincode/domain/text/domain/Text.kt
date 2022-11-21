@@ -8,6 +8,6 @@ data class Text(
 
         val text: String,
 
-        val user: Long
+        val user: Long,
 
 )

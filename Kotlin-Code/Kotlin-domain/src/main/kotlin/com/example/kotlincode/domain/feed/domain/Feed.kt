@@ -15,6 +15,6 @@ data class Feed(
 
         val userId: Long,
 
-        val createdAt: LocalDateTime
+        val createdAt: LocalDateTime,
 
 )

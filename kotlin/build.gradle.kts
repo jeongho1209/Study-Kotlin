@@ -10,7 +10,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
     compileOnly {
@@ -40,7 +40,7 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-security")
 
-    implementation("io.jsonwebtoken:jjwt:0.9.0")
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 

@@ -16,5 +16,5 @@ spring:
     property-naming-strategy: SNAKE_CASE
 
 jwt:
-  secret_key: ${SECRET_KEY:testest}
-  access_exp: ${ACCESS_EXP:7200}
+  secret_key: ${SECRET_KEY}
+  access_exp: ${ACCESS_EXP}

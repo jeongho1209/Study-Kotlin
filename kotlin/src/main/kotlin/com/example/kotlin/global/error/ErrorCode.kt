@@ -13,11 +13,13 @@ enum class ErrorCode(
     UNEXPECTED_TOKEN(401, "Unexpected Token"),
     CANNOT_DELETE_FEED(401, "Cannot Delete Feed"),
     CANNOT_UPDATE_FEED(401, "Cannot Update Feed"),
+    CANNOT_FOLLOW_YOURSELF(401, "Cannot Follow Yourself"),
 
     USER_NOT_FOUND(404, "User Not Found"),
     FEED_NOT_FOUND(404, "Feed Not Found"),
 
     USER_EXIST(409, "User Exist"),
+    FOLLOW_EXIST(409, "Follow Exist"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error")
 

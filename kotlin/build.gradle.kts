@@ -1,12 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-        plugins {
-            id("org.springframework.boot") version "2.6.6"
-            id("io.spring.dependency-management") version "1.0.11.RELEASE"
-            kotlin("jvm") version "1.6.10"
-            kotlin("plugin.spring") version "1.6.10"
-            kotlin("plugin.jpa") version "1.6.10"
-        }
+plugins {
+    id("org.springframework.boot") version PluginVersions.SPRING_BOOT_FRAMEWORK_VERSION
+    id("io.spring.dependency-management") version PluginVersions.SPRING_DEPENDENCY_MANAGEMENT_VERSION
+    kotlin("jvm") version PluginVersions.JVM_VERSION
+    kotlin("plugin.spring") version PluginVersions.PLUGIN_SPRING_VERSION
+    kotlin("plugin.jpa") version PluginVersions.PLUGIN_JPA_VERSION
+    kotlin("kapt") version PluginVersions.KAPT_VERSION
+}
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
@@ -23,45 +24,50 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation(Dependency.VALIDATION)
+    implementation(Dependency.WEB)
+    implementation(Dependency.JACKSON)
+    implementation(Dependency.JPA)
+    implementation(Dependency.REFLECT)
+    implementation(Dependency.STDLIB_JDK8)
+    implementation(Dependency.SPRING_SECURITY)
+    implementation(Dependency.REDIS)
+    kapt(Dependency.QUERYDSL_PROCESSOR)
+    implementation(Dependency.QUERYDSL)
+    runtimeOnly(Dependency.MYSQL)
+    implementation(Dependency.OPENFEIGN)
+    implementation(Dependency.JWT)
 
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
-
-    runtimeOnly("mysql:mysql-connector-java")
-
-    implementation("org.springframework.boot:spring-boot-starter-security")
-
-    implementation("io.jsonwebtoken:jjwt:0.9.1")
-
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
-allOpen {
-    annotation("javax.persistence.Entity")
-}
-
-tasks.getByName<Jar>("jar") {
-    enabled = false
+kotlin.sourceSets.main {
+    kotlin.srcDir("$buildDir/generated/source/kapt/main")
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
+
+}
+
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+
+noArg {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+
+tasks.getByName<Jar>("jar") {
+    enabled = false
 }

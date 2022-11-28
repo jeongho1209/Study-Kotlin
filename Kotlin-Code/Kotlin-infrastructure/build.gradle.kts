@@ -34,6 +34,20 @@ dependencies {
 
     // transaction
     implementation(Dependency.TRANSACTION)
+
+    // sentry
+    implementation(Dependency.SENTRY)
+
+    // logback
+    implementation(Dependency.LOGBACK)
+
+    // mapstruct
+    implementation(Dependency.MAPSTRUCT)
+    implementation(Dependency.MAPSTRUCT_PROCESSOR)
+
+    // configuration
+    annotationProcessor(Dependency.CONFIGURATION_PROCESSOR)
+
 }
 
 allOpen {

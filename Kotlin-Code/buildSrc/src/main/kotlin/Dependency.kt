@@ -51,4 +51,17 @@ object Dependency {
     // spring transactional
     const val TRANSACTION = "org.springframework:spring-tx:${DependencyVersion.TRANSACTION}"
 
+    // sentry
+    const val SENTRY = "io.sentry:sentry-spring-boot-starter:${DependencyVersion.SENTRY}"
+
+    // logback
+    const val LOGBACK = "io.sentry:sentry-logback:${DependencyVersion.LOGBACK}"
+
+    // mapstruct
+    const val MAPSTRUCT = "org.mapstruct:mapstruct:${DependencyVersion.MAPSTRUCT_VERSION}"
+    const val MAPSTRUCT_PROCESSOR = "org.mapstruct:mapstruct-processor:${DependencyVersion.MAPSTRUCT_VERSION}"
+
+    // configuration
+    const val CONFIGURATION_PROCESSOR = "org.springframework.boot:spring-boot-configuration-processor"
+
 }

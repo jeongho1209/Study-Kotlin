@@ -5,4 +5,7 @@ object DependencyVersion {
     const val OPENFEIGN = "3.1.4"
     const val TRANSACTION = "5.3.23"
     const val JACKSON_VERSION = "2.10.3"
+    const val SENTRY = "6.8.0"
+    const val LOGBACK = "6.8.0"
+    const val MAPSTRUCT_VERSION = "1.5.2.Final"
 }

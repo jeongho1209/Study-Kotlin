@@ -4,7 +4,7 @@ import com.example.kotlincode.annotation.Aggregate
 
 @Aggregate
 data class Text(
-        val id: Long,
+        val id: Long = 0,
 
         val text: String,
 

@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 
 @Aggregate
 data class Feed(
-        val id: Long,
+        val id: Long = 0,
 
         val title: String,
 

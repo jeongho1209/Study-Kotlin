@@ -10,6 +10,7 @@ enum class GlobalErrorCode(
     BAD_REQUEST(400, "Bad Request"),
 
     INVALID_TOKEN(401, "Invalid Token"),
+    EXPIRED_TOKEN(401, "Expired Token"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error")
     ;

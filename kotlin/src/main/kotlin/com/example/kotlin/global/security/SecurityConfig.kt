@@ -1,5 +1,7 @@
 package com.example.kotlin.global.security
 
+import com.example.kotlin.global.filter.FilterConfig
+import com.example.kotlin.global.security.jwt.JwtTokenParser
 import com.example.kotlin.global.security.jwt.JwtTokenProvider
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
@@ -12,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain
 
 @EnableWebSecurity
 class SecurityConfig(
-        private val jwtTokenProvider: JwtTokenProvider,
+        private val jwtTokenParser: JwtTokenParser,
         private val objectMapper: ObjectMapper
 ) {
 
@@ -32,7 +34,7 @@ class SecurityConfig(
 
                 .anyRequest().permitAll()
 
-                .and().apply(FilterConfig(jwtTokenProvider, objectMapper))
+                .and().apply(FilterConfig(jwtTokenParser, objectMapper))
 
         return http.build()
     }

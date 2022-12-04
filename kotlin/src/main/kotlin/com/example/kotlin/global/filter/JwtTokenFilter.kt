@@ -1,28 +1,39 @@
-package com.example.kotlin.global.security.jwt
+package com.example.kotlin.global.filter
 
+import com.example.kotlin.global.security.jwt.JwtProperty
+import com.example.kotlin.global.security.jwt.JwtTokenParser
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.filter.OncePerRequestFilter
-import java.io.IOException
 import javax.servlet.FilterChain
-import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class JwtTokenFilter(
-        private val jwtTokenProvider: JwtTokenProvider
+        private val jwtTokenParser: JwtTokenParser
 ) : OncePerRequestFilter() {
 
-    override fun doFilterInternal(request: HttpServletRequest,
-                                  response: HttpServletResponse,
-                                  filterChain: FilterChain) {
-        val bearerToken = jwtTokenProvider.resolveToken(request)
+    override fun doFilterInternal(
+            request: HttpServletRequest,
+            response: HttpServletResponse,
+            filterChain: FilterChain
+    ) {
+        val token = resolvedToken(request)
 
-        bearerToken?.let {
-            val token = jwtTokenProvider.parseToken(bearerToken)
-            val authentication = jwtTokenProvider.authentication(token)
-            SecurityContextHolder.getContext().authentication = authentication
+        token?.run {
+            SecurityContextHolder.getContext().authentication = jwtTokenParser.getAuthentication(token)
         }
+
         filterChain.doFilter(request, response)
+    }
+
+    private fun resolvedToken(request: HttpServletRequest): String? {
+        val bearerToken = request.getHeader(JwtProperty.HEADER)
+
+        if (bearerToken != null && bearerToken.startsWith(JwtProperty.PREFIX)) {
+            return bearerToken.substring(7)
+        }
+
+        return null
     }
 
 }

@@ -7,7 +7,7 @@ data class UserSignUpRequest(
 
         @NotBlank
         @Size(min = 8, max = 20)
-        val accountId: String,
+        val email: String,
 
         @NotBlank
         @Size(min = 20, max = 20)

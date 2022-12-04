@@ -14,14 +14,29 @@ class User(
         @field:NotNull
         @Length(max = 20)
         @Column(unique = true)
-        val accountId: String,
+        val email: String,
 
-        password: String
+        password: String?,
+        followingCounts: Int,
+        followedCounts: Int
 ) : BaseIdEntity() {
 
-    @field:NotNull
     @Length(max = 60)
-    var password: String = password
+    var password: String? = password
         protected set
+
+    var followingCounts: Int = followingCounts
+        protected set
+
+    var followedCounts: Int = followedCounts
+        protected set
+
+    fun addFollower() {
+        this.followedCounts += 1
+    }
+
+    fun addFollowing() {
+        this.followingCounts += 1
+    }
 
 }

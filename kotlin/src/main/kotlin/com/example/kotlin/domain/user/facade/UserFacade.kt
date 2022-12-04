@@ -3,6 +3,7 @@ package com.example.kotlin.domain.user.facade
 import com.example.kotlin.domain.user.domain.User
 import com.example.kotlin.domain.user.domain.UserRepository
 import com.example.kotlin.domain.user.exception.UserNotFoundException
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
@@ -11,17 +12,19 @@ class UserFacade(
         private val userRepository: UserRepository
 ) {
 
-    fun getByAccountId(accountId: String): User {
-        return userRepository.findByAccountId(accountId) ?: throw UserNotFoundException.EXCEPTION
+    fun getByEmail(accountId: String): User {
+        return userRepository.findByEmail(accountId) ?: throw UserNotFoundException.EXCEPTION
     }
 
     fun getCurrentUser(): User {
-        val userAccountId = SecurityContextHolder.getContext().authentication.name
-        return getByAccountId(userAccountId)
+        val userEmail = SecurityContextHolder.getContext().authentication.name
+        return getByEmail(userEmail)
     }
 
-    fun checkExistUser(accountId: String): Boolean {
-        return userRepository.existsByAccountId(accountId)
+    fun getUserById(userId: Long): User = userRepository.findByIdOrNull(userId) ?: throw UserNotFoundException.EXCEPTION
+
+    fun checkExistUser(email: String): Boolean {
+        return userRepository.existsByEmail(email)
     }
 
 }

@@ -37,7 +37,9 @@ dependencies {
     runtimeOnly(Dependency.MYSQL)
     implementation(Dependency.OPENFEIGN)
     implementation(Dependency.JWT)
-
+    implementation(Dependency.PROPERTIES_SCAN)
+    implementation(Dependency.SENTRY)
+    implementation(Dependency.LOGBACK)
 }
 
 kotlin.sourceSets.main {

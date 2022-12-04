@@ -14,7 +14,10 @@ class QueryMyInfoService(
     fun execute(): QueryMyInfoResponse {
         val user = userFacade.getCurrentUser()
 
-        return QueryMyInfoResponse(user.accountId)
+        return QueryMyInfoResponse(
+                user.followingCounts,
+                user.followedCounts
+        )
     }
 
 }

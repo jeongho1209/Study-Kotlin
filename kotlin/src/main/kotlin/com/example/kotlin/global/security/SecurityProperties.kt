@@ -1,19 +1,18 @@
-package com.example.kotlin.global.security.jwt
+package com.example.kotlin.global.security
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
+import java.util.*
 
-@ConstructorBinding
 @ConfigurationProperties(prefix = "jwt")
-class JwtProperties(
-        val secretKey: String,
-        val accessExp: Long
+@ConstructorBinding
+class SecurityProperties(
+        accessExp: Long,
+        refreshExp: Long,
+        secretKey: String
 ) {
-
-    companion object {
-        const val ACCESS_KEY = "access"
-        const val HEADER = "Authorization"
-        const val PREFIX = "Bearer "
-    }
+    val accessExp = accessExp * 1000
+    val refreshExp = refreshExp * 1000
+    val secretKey = Base64.getEncoder().encodeToString(secretKey.toByteArray())!!
 
 }

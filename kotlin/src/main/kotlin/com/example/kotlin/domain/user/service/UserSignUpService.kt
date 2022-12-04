@@ -7,7 +7,6 @@ import com.example.kotlin.domain.user.facade.UserFacade
 import com.example.kotlin.domain.user.presentation.dto.request.UserSignUpRequest
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import javax.transaction.Transactional
 
 @Service
 class UserSignUpService(
@@ -15,17 +14,20 @@ class UserSignUpService(
         private val userRepository: UserRepository,
         private val passwordEncoder: PasswordEncoder
 ) {
-    @Transactional
+
     fun execute(request: UserSignUpRequest) {
-        if (userFacade.checkExistUser(request.accountId)) {
+        if (userFacade.checkExistUser(request.email)) {
             throw UserExistException.EXCEPTION
         }
 
         userRepository.save(
                 User(
                         id = 0,
-                        accountId = request.accountId,
-                        password = passwordEncoder.encode(request.password))
+                        email = request.email,
+                        password = passwordEncoder.encode(request.password),
+                        followingCounts = 0,
+                        followedCounts = 0
+                )
         )
     }
 

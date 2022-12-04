@@ -16,13 +16,13 @@ class UserSignInService(
 ) {
 
     fun execute(request: UserSignInRequest): TokenResponse {
-        val user = userFacade.getByAccountId(request.accountId)
+        val user = userFacade.getByEmail(request.email)
 
         if (!passwordEncoder.matches(request.password, user.password)) {
             throw PasswordMisMatchException.EXCEPTION
         }
 
-        return jwtTokenProvider.getToken(request.accountId)
+        return jwtTokenProvider.getToken(request.email)
     }
 
 }

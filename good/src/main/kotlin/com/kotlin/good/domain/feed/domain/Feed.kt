@@ -2,11 +2,12 @@ package com.kotlin.good.domain.feed.domain
 
 import com.kotlin.good.domain.user.domain.User
 import com.kotlin.good.global.entity.BaseUUIDEntity
-import jakarta.persistence.*
-import jakarta.validation.constraints.NotNull
 import org.hibernate.annotations.ColumnDefault
+import org.springframework.data.annotation.CreatedDate
 import java.time.LocalDateTime
 import java.util.*
+import javax.persistence.*
+import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "tbl_feed")
@@ -26,6 +27,7 @@ class Feed(
         val viewCounts: Int,
 
         @field:NotNull
+        @CreatedDate
         val createdAt: LocalDateTime,
 
         @ManyToOne(fetch = FetchType.LAZY)

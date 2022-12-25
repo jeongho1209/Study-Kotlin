@@ -1,10 +1,10 @@
 package com.kotlin.good.domain.follow.domain
 
-import jakarta.persistence.Column
-import jakarta.persistence.Embeddable
-import jakarta.validation.constraints.NotNull
 import java.io.Serializable
 import java.util.*
+import javax.persistence.Column
+import javax.persistence.Embeddable
+import javax.validation.constraints.NotNull
 
 @Embeddable
 data class FollowId(

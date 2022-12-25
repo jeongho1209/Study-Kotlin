@@ -37,10 +37,4 @@ object Dependency {
 
     // property
     const val PROPERTIES_SCAN = "org.springframework.boot:spring-boot-configuration-processor"
-
-    // sentry
-    const val SENTRY = "io.sentry:sentry-spring-boot-starter:${DependencyVersion.SENTRY}"
-
-    // logback
-    const val LOGBACK = "io.sentry:sentry-logback:${DependencyVersion.LOGBACK}"
 }

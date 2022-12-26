@@ -30,7 +30,7 @@ class User(
 
     @field:NotNull
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(5)")
+    @Column(columnDefinition = "VARCHAR(7)")
     val authority: Authority,
 
     @field:NotNull

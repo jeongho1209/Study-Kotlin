@@ -22,7 +22,7 @@ class StudentSignUpService(
 ) {
 
     fun execute(request: StudentSignUpRequest): TokenResponse {
-        if (checkExistEmail(request.email)) {
+        if (userRepository.existsByEmail(request.email)) {
             throw UserExist.EXCEPTION
         }
 
@@ -51,10 +51,6 @@ class StudentSignUpService(
         )
 
         return jwtTokenProvider.getToken(request.email)
-    }
-
-    private fun checkExistEmail(email: String): Boolean {
-        return userRepository.existsByEmail(email)
     }
 
 }

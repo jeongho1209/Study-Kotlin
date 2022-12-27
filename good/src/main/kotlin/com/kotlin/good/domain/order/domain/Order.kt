@@ -23,6 +23,9 @@ class Order(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    val user: User
+    val user: User,
+
+    @OneToMany(mappedBy = "order", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val orderItems: MutableList<OrderItem> = ArrayList()
 
 ) : BaseUUIDEntity()

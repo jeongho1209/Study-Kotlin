@@ -38,6 +38,8 @@ dependencies {
     implementation(Dependency.OPENFEIGN)
     implementation(Dependency.JWT)
     annotationProcessor(Dependency.PROPERTIES_SCAN)
+    testImplementation(Dependency.SPRING_TEST)
+    testImplementation(Dependency.MOCKITO_KOTLIN)
 }
 
 kotlin.sourceSets.main {

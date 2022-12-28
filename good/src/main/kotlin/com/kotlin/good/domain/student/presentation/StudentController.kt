@@ -18,7 +18,7 @@ class StudentController(
 ) {
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
+    @PostMapping("/signup")
     fun signUp(@RequestBody @Valid request: StudentSignUpRequest) : TokenResponse {
         return studentSignUpService.execute(request)
     }

@@ -1,15 +1,14 @@
 package com.kotlin.good.domain.item.domain
 
+import com.kotlin.good.domain.item.error.exception.ItemNotFound
 import com.kotlin.good.global.entity.BaseUUIDEntity
-import org.hibernate.annotations.ColumnDefault
-import org.hibernate.annotations.DynamicInsert
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Table
+import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
 
-@DynamicInsert
 @Entity
 @Table(name = "tbl_item")
 class Item(
@@ -20,13 +19,32 @@ class Item(
     val name: String,
 
     @field:NotNull
-    @ColumnDefault("0")
-    val stock: Int,
+    val price: Int,
+
+    itemInfo: String,
+
+    stock: Int
+) : BaseUUIDEntity() {
 
     @field:NotNull
-    val price: Int,
+    @field:Min(0)
+    var stock = stock
+        protected set
 
     @field:NotNull
     @Column(columnDefinition = "VARCHAR(500)")
-    val itemInfo: String
-) : BaseUUIDEntity()
+    var itemInfo = itemInfo
+        protected set
+
+    fun minusStock(count: Int) {
+        if (this.stock <= 0) {
+            throw ItemNotFound.EXCEPTION
+        }
+        this.stock -= count
+    }
+
+    fun plusStock(count: Int) {
+        this.stock += count
+    }
+
+}

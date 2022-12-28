@@ -1,5 +1,6 @@
 package com.kotlin.good.domain.order.domain
 
+import com.kotlin.good.domain.order.error.exception.AlreadyCancelOrder
 import com.kotlin.good.domain.user.domain.User
 import com.kotlin.good.global.entity.BaseUUIDEntity
 import com.kotlin.good.global.enum.OrderStatus
@@ -17,15 +18,26 @@ class Order(
     @field:NotNull
     val orderDate: LocalDate,
 
-    @field:NotNull
-    @Enumerated(EnumType.STRING)
-    val orderStatus: OrderStatus,
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     val user: User,
 
     @OneToMany(mappedBy = "order", cascade = [CascadeType.ALL], orphanRemoval = true)
-    val orderItems: MutableList<OrderItem> = ArrayList()
+    val orderItems: List<OrderItem> = ArrayList(),
 
-) : BaseUUIDEntity()
+    orderStatus: OrderStatus
+) : BaseUUIDEntity() {
+
+    @field:NotNull
+    @Enumerated(EnumType.STRING)
+    var orderStatus = orderStatus
+        protected set
+
+    fun cancelOrder() {
+        if (orderStatus == OrderStatus.CANCEL) {
+            throw AlreadyCancelOrder.EXCEPTION
+        }
+        this.orderStatus = OrderStatus.CANCEL
+    }
+
+}

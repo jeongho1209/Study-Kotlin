@@ -1,6 +1,6 @@
 package com.example.kotlin.domain.feed.service
 
-import com.example.kotlin.domain.feed.domain.FeedRepository
+import com.example.kotlin.domain.feed.domain.repository.FeedRepository
 import com.example.kotlin.domain.feed.exception.CannotDeleteFeedException
 import com.example.kotlin.domain.feed.facade.FeedFacade
 import com.example.kotlin.domain.user.facade.UserFacade

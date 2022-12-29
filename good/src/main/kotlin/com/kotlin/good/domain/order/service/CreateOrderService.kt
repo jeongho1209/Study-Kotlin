@@ -1,5 +1,7 @@
 package com.kotlin.good.domain.order.service
 
+import com.kotlin.good.domain.delivery.domain.Delivery
+import com.kotlin.good.domain.delivery.domain.repository.DeliveryRepository
 import com.kotlin.good.domain.item.facade.ItemFacade
 import com.kotlin.good.domain.order.domain.Order
 import com.kotlin.good.domain.order.domain.OrderItem
@@ -7,6 +9,7 @@ import com.kotlin.good.domain.order.domain.repository.OrderItemRepository
 import com.kotlin.good.domain.order.domain.repository.OrderRepository
 import com.kotlin.good.domain.order.presentation.dto.request.CreateOrderRequest
 import com.kotlin.good.domain.order.presentation.dto.response.CreateOrderResponse
+import com.kotlin.good.global.enum.DeliveryStatus
 import com.kotlin.good.global.enum.OrderStatus
 import com.kotlin.good.global.security.SecurityFacade
 import org.springframework.stereotype.Service
@@ -18,6 +21,7 @@ import java.util.*
 class CreateOrderService(
     private val orderRepository: OrderRepository,
     private val orderItemRepository: OrderItemRepository,
+    private val deliveryRepository: DeliveryRepository,
     private val securityFacade: SecurityFacade,
     private val itemFacade: ItemFacade
 ) {
@@ -46,6 +50,15 @@ class CreateOrderService(
                 price = item.price,
                 order = order,
                 item = item
+            )
+        )
+
+        deliveryRepository.save(
+            Delivery(
+                id = UUID.randomUUID(),
+                address = request.address,
+                deliveryStatus = DeliveryStatus.START,
+                order = order
             )
         )
 

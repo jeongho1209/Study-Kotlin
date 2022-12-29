@@ -27,7 +27,7 @@ class JwtTokenProvider(
             RefreshToken(
                 token = token,
                 email = email,
-                expiredAt = securityProperty.refreshExp / 1000
+                expiredAt = securityProperty.refreshExp
             )
         )
         return token
@@ -36,10 +36,10 @@ class JwtTokenProvider(
     private fun generateToken(email: String, type: String, expiredAt: Long) =
         Jwts.builder()
             .signWith(SignatureAlgorithm.HS256, securityProperty.secretKey)
-            .claim("email", email)
+            .setSubject(email)
             .setHeaderParam(Header.JWT_TYPE, type)
             .setIssuedAt(Date())
-            .setExpiration(Date(System.currentTimeMillis() + expiredAt))
+            .setExpiration(Date(System.currentTimeMillis() + expiredAt * 1000))
             .compact()
 
     fun getToken(email: String) = TokenResponse(

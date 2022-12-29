@@ -1,23 +1,18 @@
 package com.kotlin.good.global.security.auth
 
-import com.kotlin.good.global.enum.Authority
+import com.kotlin.good.domain.user.domain.User
 import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
-import java.util.*
 
 class AuthDetails(
-    private val userId: UUID,
-    private val authority: Authority
+    private val user: User,
 ) : UserDetails {
 
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        return mutableListOf(SimpleGrantedAuthority(authority.name))
-    }
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority> = mutableListOf()
 
     override fun getPassword(): String? = null
 
-    override fun getUsername(): String = userId.toString()
+    override fun getUsername(): String = user.email
 
     override fun isAccountNonExpired(): Boolean = true
 

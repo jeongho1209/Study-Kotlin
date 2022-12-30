@@ -7,6 +7,7 @@ import com.kotlin.good.domain.item.presentation.dto.response.QueryItemListRespon
 import com.kotlin.good.domain.item.service.AddItemStockService
 import com.kotlin.good.domain.item.service.CreateItemService
 import com.kotlin.good.domain.item.service.QueryItemListService
+import com.kotlin.good.domain.item.service.QueryMyMarkItemListService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -16,6 +17,7 @@ import java.util.*
 class ItemController(
     private val createItemService: CreateItemService,
     private val queryItemListService: QueryItemListService,
+    private val queryMyMarkItemListService: QueryMyMarkItemListService,
     private val addItemStockService: AddItemStockService
 ) {
 
@@ -28,6 +30,11 @@ class ItemController(
     @GetMapping
     fun queryItemList(@RequestParam("price") price: Int): QueryItemListResponse {
         return queryItemListService.execute(price)
+    }
+
+    @GetMapping("/my")
+    fun queryMyMarkItemList(): QueryItemListResponse {
+        return queryMyMarkItemListService.execute()
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

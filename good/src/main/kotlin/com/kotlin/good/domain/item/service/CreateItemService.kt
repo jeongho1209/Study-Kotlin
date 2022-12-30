@@ -22,7 +22,8 @@ class CreateItemService(
                 name = request.name,
                 stock = request.stock,
                 price = request.price,
-                itemInfo = request.itemInfo
+                itemInfo = request.itemInfo,
+                markCount = 0
             )
         )
 

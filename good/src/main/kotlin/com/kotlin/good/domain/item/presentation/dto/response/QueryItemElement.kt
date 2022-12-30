@@ -7,5 +7,6 @@ data class QueryItemElement(
     val itemName: String,
     val itemInfo: String,
     val price: Int,
-    val stock: Int
+    val stock: Int,
+    var markCount: Int,
 )

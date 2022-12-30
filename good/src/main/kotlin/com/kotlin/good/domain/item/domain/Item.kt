@@ -23,7 +23,9 @@ class Item(
 
     itemInfo: String,
 
-    stock: Int
+    stock: Int,
+
+    markCount: Int
 ) : BaseUUIDEntity() {
 
     @field:NotNull
@@ -36,6 +38,10 @@ class Item(
     var itemInfo = itemInfo
         protected set
 
+    @field:NotNull
+    var markCount = markCount
+        protected set
+
     fun minusStock(count: Int) {
         if (this.stock <= 0) {
             throw ItemNotFound.EXCEPTION
@@ -45,6 +51,10 @@ class Item(
 
     fun plusStock(count: Int) {
         this.stock += count
+    }
+
+    fun addMark() {
+        this.markCount += 1
     }
 
 }

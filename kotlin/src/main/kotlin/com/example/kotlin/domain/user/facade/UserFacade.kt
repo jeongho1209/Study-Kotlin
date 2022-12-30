@@ -21,7 +21,8 @@ class UserFacade(
         return getByEmail(userEmail)
     }
 
-    fun getUserById(userId: Long): User = userRepository.findByIdOrNull(userId) ?: throw UserNotFoundException.EXCEPTION
+    fun getUserById(userId: Long): User = userRepository.findByIdOrNull(userId)
+        ?: throw UserNotFoundException.EXCEPTION
 
     fun checkExistUser(email: String): Boolean {
         return userRepository.existsByEmail(email)

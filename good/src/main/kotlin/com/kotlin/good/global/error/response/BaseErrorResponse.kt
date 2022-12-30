@@ -14,7 +14,6 @@ class BaseErrorResponse(
                 message = e.message
             )
         }
-
     }
 
 }

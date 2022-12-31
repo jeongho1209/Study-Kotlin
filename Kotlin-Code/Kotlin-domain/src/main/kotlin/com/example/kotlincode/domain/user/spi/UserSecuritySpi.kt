@@ -4,4 +4,6 @@ interface UserSecuritySpi {
 
     fun encodePassword(password: String): String
 
+    fun matches(rawPassword: String, newPassword: String): Boolean
+
 }

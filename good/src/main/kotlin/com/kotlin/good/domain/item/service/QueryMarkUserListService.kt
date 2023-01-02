@@ -4,6 +4,7 @@ import com.kotlin.good.domain.item.facade.ItemFacade
 import com.kotlin.good.domain.user.domain.repository.UserRepository
 import com.kotlin.good.domain.user.presentation.dto.response.QueryUserElement
 import com.kotlin.good.domain.user.presentation.dto.response.QueryUserListResponse
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
@@ -15,10 +16,10 @@ class QueryMarkUserListService(
 ) {
 
     @Transactional(readOnly = true)
-    fun execute(itemId: UUID): QueryUserListResponse {
+    fun execute(itemId: UUID, pageable: Pageable): QueryUserListResponse {
         val item = itemFacade.getItemById(itemId)
 
-        val userList = userRepository.queryUserListByMark(item.id)
+        val userList = userRepository.queryUserListByMark(item.id, pageable)
 
         return QueryUserListResponse(
             userList = userList

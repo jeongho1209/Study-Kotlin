@@ -6,6 +6,8 @@ import com.kotlin.good.domain.item.presentation.dto.response.CreateItemResponse
 import com.kotlin.good.domain.item.presentation.dto.response.QueryItemListResponse
 import com.kotlin.good.domain.item.service.*
 import com.kotlin.good.domain.user.presentation.dto.response.QueryUserListResponse
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -37,8 +39,11 @@ class ItemController(
     }
 
     @GetMapping("/mark")
-    fun queryMarkUserList(@RequestParam("item") itemId: UUID): QueryUserListResponse {
-        return queryMarkUserListService.execute(itemId)
+    fun queryMarkUserList(
+        @RequestParam("item") itemId: UUID,
+        @PageableDefault(size = 3) pageable: Pageable
+    ): QueryUserListResponse {
+        return queryMarkUserListService.execute(itemId, pageable)
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

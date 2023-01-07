@@ -34,7 +34,9 @@ class CreateFollowService(
         }
 
         targetUser.addFollower()
+
         user.addFollowing()
+
         return addFollow(user, targetUser)
     }
 

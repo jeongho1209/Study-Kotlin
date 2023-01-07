@@ -17,6 +17,7 @@ enum class ErrorCode(
     CANNOT_UPDATE_FEED(401, "Cannot Update Feed"),
     CANNOT_FOLLOW_YOURSELF(401, "Cannot Follow Yourself"),
     FEIGN_UN_AUTHORIZED(401, "Feign Un Authorized"),
+    INVALID_EMAIL(401, "Invalid Email"),
 
     FEIGN_FORBIDDEN(403, "Feign Forbidden"),
 

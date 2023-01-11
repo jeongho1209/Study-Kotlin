@@ -12,8 +12,6 @@ class FeignClientErrorDecoder : ErrorDecoder {
 
     override fun decode(methodKey: String, response: Response): Exception {
         if (response.status() >= 400) {
-            val a = response.request()
-            println(a)
             when (response.status()) {
                 401 -> throw FeignUnAuthorizedException.EXCEPTION
                 403 -> throw FeignForbiddenException.EXCEPTION

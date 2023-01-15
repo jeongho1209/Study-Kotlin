@@ -6,4 +6,5 @@ interface CommandUserSpi {
 
     fun save(user: User)
 
+    fun deleteUser(user: User)
 }

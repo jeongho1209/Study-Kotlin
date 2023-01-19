@@ -7,8 +7,8 @@ import com.example.kotlincode.global.annotation.Adapter
 
 @Adapter
 class UserPersistenceAdapter(
-        private val userRepository: UserRepository,
-        private val userMapper: UserMapper
+    private val userRepository: UserRepository,
+    private val userMapper: UserMapper
 ) : UserSpi {
 
     override fun save(user: User) {
@@ -17,6 +17,14 @@ class UserPersistenceAdapter(
 
     override fun existsUserByAccountId(accountId: String?): Boolean {
         return userRepository.existsByAccountId(accountId)
+    }
+
+    override fun getAccountId(accountId: String): User? = userMapper.toDomain(
+        userRepository.findByAccountId(accountId)
+    )
+
+    override fun deleteUser(user: User) {
+        userRepository.delete(userMapper.toEntity(user))
     }
 
 }

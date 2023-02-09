@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class QueryMyInfoService(
-        private val userFacade: UserFacade
+    private val userFacade: UserFacade
 ) {
 
     @Transactional(readOnly = true)
@@ -15,9 +15,8 @@ class QueryMyInfoService(
         val user = userFacade.getCurrentUser()
 
         return QueryMyInfoResponse(
-                user.followingCounts,
-                user.followedCounts
+            followingCounts = user.followingCounts,
+            followedCounts = user.followedCounts,
         )
     }
-
 }

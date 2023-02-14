@@ -8,23 +8,13 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class QueryFeedListService(
-        private val feedRepository: FeedRepository
+    private val feedRepository: FeedRepository
 ) {
 
     @Transactional(readOnly = true)
     fun execute(): QueryFeedListResponse {
         val feedList = feedRepository.queryFeedList()
-
-        val response = feedList.map {
-            FeedElement(
-                    feedId = it.id,
-                    title = it.title,
-                    content = it.content,
-                    createdAt = it.createdAt
-            )
-        }
-
-        return QueryFeedListResponse(response)
+        return QueryFeedListResponse(feedList.map { FeedElement(it) })
     }
 
 }

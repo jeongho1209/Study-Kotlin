@@ -4,7 +4,7 @@ import com.kotlin.good.global.error.CustomException
 
 class BaseErrorResponse(
     val status: Int,
-    val message: String
+    val message: String,
 ) {
 
     companion object {
@@ -15,5 +15,4 @@ class BaseErrorResponse(
             )
         }
     }
-
 }

@@ -1,4 +1,4 @@
-name: CI
+name: Ktlint-CI
 
 on:
   push:
@@ -26,3 +26,10 @@ jobs:
         uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
         with:
           arguments: build
+
+      - name: ktlint
+        uses: ScaCap/action-ktlint@master
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          reporter: github-pr-check # Change reporter
+          fail_on_error: true

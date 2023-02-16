@@ -12,10 +12,14 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class ExceptionFilter(
-        private val objectMapper: ObjectMapper
+    private val objectMapper: ObjectMapper
 ) : OncePerRequestFilter() {
 
-    override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
+    override fun doFilterInternal(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+        filterChain: FilterChain
+    ) {
         try {
             filterChain.doFilter(request, response)
         } catch (e: Exception) {
@@ -34,5 +38,4 @@ class ExceptionFilter(
         response.contentType = MediaType.APPLICATION_JSON_VALUE
         response.writer.write(objectMapper.writeValueAsString(errorResponse))
     }
-
 }

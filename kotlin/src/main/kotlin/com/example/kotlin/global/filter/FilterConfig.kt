@@ -8,18 +8,18 @@ import org.springframework.security.web.DefaultSecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 class FilterConfig(
-        private val jwtTokenParser: JwtTokenParser,
-        private val objectMapper: ObjectMapper
+    private val jwtTokenParser: JwtTokenParser,
+    private val objectMapper: ObjectMapper
 ) : SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity>() {
 
     override fun configure(builder: HttpSecurity) {
         builder.addFilterBefore(
-                JwtTokenFilter(jwtTokenParser),
-                UsernamePasswordAuthenticationFilter::class.java
+            JwtTokenFilter(jwtTokenParser),
+            UsernamePasswordAuthenticationFilter::class.java
         )
         builder.addFilterBefore(
-                ExceptionFilter(objectMapper), JwtTokenFilter::class.java
+            ExceptionFilter(objectMapper),
+            JwtTokenFilter::class.java
         )
     }
-
 }

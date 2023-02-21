@@ -23,7 +23,6 @@ class AddMarkingService(
     @Transactional
     fun execute(itemId: UUID): AddMarkingResponse {
         val user = securityFacade.getCurrentUser()
-
         val item = itemFacade.getItemById(itemId)
 
         if (existByItemAndUser(item, user)) {

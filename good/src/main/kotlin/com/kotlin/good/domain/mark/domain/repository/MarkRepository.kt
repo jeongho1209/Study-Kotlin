@@ -11,5 +11,4 @@ import org.springframework.stereotype.Repository
 interface MarkRepository : CrudRepository<Mark, MarkId> {
 
     fun existsByItemAndUser(item: Item, user: User): Boolean
-
 }

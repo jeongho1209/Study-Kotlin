@@ -26,5 +26,4 @@ class UserService(
 
         return jwtTokenProvider.getToken(request.email)
     }
-
 }

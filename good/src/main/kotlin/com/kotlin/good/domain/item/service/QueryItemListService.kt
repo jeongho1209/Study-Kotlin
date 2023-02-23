@@ -13,26 +13,20 @@ class QueryItemListService(
 
     @Transactional(readOnly = true)
     fun execute(price: Int): QueryItemListResponse {
-
         val itemList = itemRepository.queryItemListByPrice(price)
+        val response = itemList
+            .filter { it.stock > 0 }
+            .map {
+                QueryItemElement(
+                    itemId = it.id,
+                    itemName = it.name,
+                    itemInfo = it.itemInfo,
+                    price = it.price,
+                    stock = it.stock,
+                    markCount = it.markCount
+                )
+            }
 
-        return QueryItemListResponse(
-            itemList = itemList
-                .filter { item ->
-                    item.stock > 0
-                }
-
-                .map {
-                    QueryItemElement(
-                        itemId = it.id,
-                        itemName = it.name,
-                        itemInfo = it.itemInfo,
-                        price = it.price,
-                        stock = it.stock,
-                        markCount = it.markCount
-                    )
-                }
-        )
+        return QueryItemListResponse(response)
     }
-
 }

@@ -40,6 +40,7 @@ dependencies {
     annotationProcessor(Dependency.PROPERTIES_SCAN)
     testImplementation(Dependency.SPRING_TEST)
     testImplementation(Dependency.MOCKITO_KOTLIN)
+    testImplementation(Dependency.MOCKK)
 }
 
 kotlin.sourceSets.main {

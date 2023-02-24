@@ -22,37 +22,33 @@ class QueryMyOrderListService(
     @Transactional(readOnly = true)
     fun execute(orderId: UUID): QueryMyOrderListResponse {
         val user = securityFacade.getCurrentUser()
-
         val orderList = orderRepository.queryMyOrderList(user.id)
-
         val orderItemList = orderItemRepository.queryMyOrderItems(orderId, user.id)
 
-        return QueryMyOrderListResponse(
-            orderList = orderList
-
-                .filter { order ->
-                    order.orderStatus == OrderStatus.ORDER
-                }
-
-                .map {
-                    QueryOrderElement(
-                        orderId = it.id,
-                        orderDate = it.orderDate,
-                        orderStatus = it.orderStatus,
-                        orderItemList = orderItemList.map { orderItem ->
-                            QueryOrderItemElement(
-                                orderItemId = orderItem.id,
-                                count = orderItem.count,
-                                price = orderItem.price,
-                            )
-                        },
-                        userInfo = QueryUserElement(
-                            name = user.name,
-                            address = user.address
+        val response = orderList
+            .filter { order ->
+                order.orderStatus == OrderStatus.ORDER
+            }
+            .map { order ->
+                QueryOrderElement(
+                    orderId = order.id,
+                    orderDate = order.orderDate,
+                    orderStatus = order.orderStatus,
+                    orderItemList = orderItemList.map {
+                        QueryOrderItemElement(
+                            orderItemId = it.id,
+                            count = it.count,
+                            price = it.price,
                         )
+                    },
+                    userInfo = QueryUserElement(
+                        name = user.name,
+                        address = user.address
                     )
-                }
-        )
+                )
+            }
+
+        return QueryMyOrderListResponse(response)
     }
 
 }

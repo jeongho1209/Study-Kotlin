@@ -1,25 +1,23 @@
 plugins {
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version PluginVersions.JVM_VERSION
 }
 
 subprojects {
 
     apply {
         plugin("org.jetbrains.kotlin.jvm")
-        version = "1.6.21"
+        version = PluginVersions.JVM_VERSION
     }
 
     apply {
         plugin("org.jetbrains.kotlin.kapt")
-        version = "1.7.10"
+        version = PluginVersions.KAPT_VERSION
     }
 
     dependencies {
-        implementation(Dependency.JACKSON)
         implementation(Dependency.REFLECT)
         implementation(Dependency.STDLIB_JDK8)
     }
-
 }
 
 allprojects {

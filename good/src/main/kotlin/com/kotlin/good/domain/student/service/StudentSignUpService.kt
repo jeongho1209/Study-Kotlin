@@ -7,6 +7,7 @@ import com.kotlin.good.domain.user.domain.User
 import com.kotlin.good.domain.user.domain.repository.UserRepository
 import com.kotlin.good.domain.user.error.exception.UserExist
 import com.kotlin.good.domain.user.presentation.dto.response.TokenResponse
+import com.kotlin.good.domain.user.service.UserService
 import com.kotlin.good.global.enum.Authority
 import com.kotlin.good.global.security.jwt.JwtTokenProvider
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -38,12 +39,9 @@ class StudentSignUpService(
                 introduce = null
             )
         )
-
-        val userId = user.id
-
         studentRepository.save(
             Student(
-                userId = userId,
+                userId = user.id,
                 gcn = request.gcn,
                 major = request.major,
                 user = user
@@ -53,7 +51,5 @@ class StudentSignUpService(
         return jwtTokenProvider.getToken(request.email)
     }
 
-    private fun checkExistUser(email: String) =
-        userRepository.existsByEmail(email)
-
+    private fun checkExistUser(email: String) = userRepository.existsByEmail(email)
 }

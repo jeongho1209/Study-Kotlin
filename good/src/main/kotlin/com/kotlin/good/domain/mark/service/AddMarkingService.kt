@@ -48,7 +48,5 @@ class AddMarkingService(
         )
     }
 
-    private fun existByItemAndUser(item: Item, user: User) =
-        markRepository.existsByItemAndUser(item, user)
-
+    private fun existByItemAndUser(item: Item, user: User) = markRepository.existsByItemAndUser(item, user)
 }

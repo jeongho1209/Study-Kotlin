@@ -18,18 +18,13 @@ class CancelOrderService(
     @Transactional
     fun execute(orderId: UUID) {
         val order = orderFacade.getOrderById(orderId)
-
         val user = securityFacade.getCurrentUser()
 
         if (user != order.user) {
             throw CannotCancelOrder.EXCEPTION
         }
 
-        val orderItems = order.orderItems
-        orderItemRepository.deleteAll(orderItems)
-
+        orderItemRepository.deleteAll(order.orderItems)
         order.cancelOrder()
-
     }
-
 }

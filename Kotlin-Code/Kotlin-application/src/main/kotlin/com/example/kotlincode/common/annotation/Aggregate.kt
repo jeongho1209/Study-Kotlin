@@ -1,4 +1,4 @@
-package com.example.kotlincode.annotation
+package com.example.kotlincode.common.annotation
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.CLASS)

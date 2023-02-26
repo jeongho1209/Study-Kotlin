@@ -1,6 +1,6 @@
-package com.example.kotlincode.domain.user.spi
+package com.example.kotlincode.user.spi
 
-import com.example.kotlincode.domain.user.domain.User
+import com.example.kotlincode.user.User
 
 interface UserSecuritySpi {
 

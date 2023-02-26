@@ -1,8 +1,8 @@
-package com.example.kotlincode.domain.user.usecase
+package com.example.kotlincode.user.usecase
 
-import com.example.kotlincode.annotation.UseCase
-import com.example.kotlincode.domain.user.spi.CommandUserSpi
-import com.example.kotlincode.domain.user.spi.UserSecuritySpi
+import com.example.kotlincode.common.annotation.UseCase
+import com.example.kotlincode.user.spi.CommandUserSpi
+import com.example.kotlincode.user.spi.UserSecuritySpi
 
 @UseCase
 class UserDeleteUseCase(

@@ -1,4 +1,4 @@
-package com.example.kotlincode.domain.user.spi
+package com.example.kotlincode.user.spi
 
 interface UserSpi : CommandUserSpi, QueryUserSpi {
 }

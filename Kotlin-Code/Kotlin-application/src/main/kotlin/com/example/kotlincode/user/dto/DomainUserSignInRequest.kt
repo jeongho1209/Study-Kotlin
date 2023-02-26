@@ -1,4 +1,4 @@
-package com.example.kotlincode.domain.user.dto
+package com.example.kotlincode.user.dto
 
 data class DomainUserSignInRequest(
         val accountId: String,

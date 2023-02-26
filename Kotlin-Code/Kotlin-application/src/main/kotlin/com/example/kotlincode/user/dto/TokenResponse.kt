@@ -1,4 +1,4 @@
-package com.example.kotlincode.domain.user.dto
+package com.example.kotlincode.user.dto
 
 import java.util.*
 

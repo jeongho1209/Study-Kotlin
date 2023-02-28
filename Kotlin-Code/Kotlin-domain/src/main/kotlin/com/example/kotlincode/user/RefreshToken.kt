@@ -1,6 +1,6 @@
-package com.example.kotlincode.domain.user.domain
+package com.example.kotlincode.user
 
-import com.example.kotlincode.annotation.Aggregate
+import com.example.kotlincode.common.annotation.Aggregate
 
 @Aggregate
 data class RefreshToken(

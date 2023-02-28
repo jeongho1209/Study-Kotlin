@@ -1,6 +1,6 @@
-package com.example.kotlincode.domain.feed.domain
+package com.example.kotlincode.feed
 
-import com.example.kotlincode.annotation.Aggregate
+import com.example.kotlincode.common.annotation.Aggregate
 import java.time.LocalDateTime
 
 @Aggregate

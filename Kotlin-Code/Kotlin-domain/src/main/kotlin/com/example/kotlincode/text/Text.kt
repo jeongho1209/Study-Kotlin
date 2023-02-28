@@ -1,6 +1,6 @@
-package com.example.kotlincode.domain.text.domain
+package com.example.kotlincode.text
 
-import com.example.kotlincode.annotation.Aggregate
+import com.example.kotlincode.common.annotation.Aggregate
 
 @Aggregate
 data class Text(

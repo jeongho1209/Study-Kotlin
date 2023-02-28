@@ -1,4 +1,4 @@
-package com.example.kotlincode.error
+package com.example.kotlincode.common.error
 
 interface ErrorProperty {
 

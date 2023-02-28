@@ -1,4 +1,4 @@
-package com.example.kotlincode.error
+package com.example.kotlincode.common.error
 
 abstract class BusinessException(
     val errorProperty: ErrorProperty

@@ -1,6 +1,6 @@
-package com.example.kotlincode.domain.user.error
+package com.example.kotlincode.user.error
 
-import com.example.kotlincode.error.ErrorProperty
+import com.example.kotlincode.common.error.ErrorProperty
 
 enum class UserErrorCode(
         private val status: Int,

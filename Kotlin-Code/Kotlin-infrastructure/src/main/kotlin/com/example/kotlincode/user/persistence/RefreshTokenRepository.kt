@@ -1,6 +1,6 @@
-package com.example.kotlincode.domain.user.persistence
+package com.example.kotlincode.user.persistence
 
-import com.example.kotlincode.domain.user.persistence.entity.RefreshTokenEntity
+import com.example.kotlincode.user.persistence.entity.RefreshTokenEntity
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 

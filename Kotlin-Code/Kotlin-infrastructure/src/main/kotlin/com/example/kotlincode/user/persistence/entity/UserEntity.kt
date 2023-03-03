@@ -1,6 +1,6 @@
-package com.example.kotlincode.domain.user.persistence.entity
+package com.example.kotlincode.user.persistence.entity
 
-import com.example.kotlincode.global.entity.BaseIdEntity
+import com.example.kotlincode.common.entity.BaseIdEntity
 import org.hibernate.validator.constraints.Length
 import javax.persistence.Column
 import javax.persistence.Entity

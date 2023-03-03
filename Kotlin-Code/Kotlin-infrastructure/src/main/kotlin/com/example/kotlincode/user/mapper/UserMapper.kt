@@ -1,8 +1,8 @@
-package com.example.kotlincode.domain.user.mapper
+package com.example.kotlincode.user.mapper
 
-import com.example.kotlincode.domain.GenericMapper
-import com.example.kotlincode.domain.user.domain.User
-import com.example.kotlincode.domain.user.persistence.entity.UserEntity
+import com.example.kotlincode.GenericMapper
+import com.example.kotlincode.user.User
+import com.example.kotlincode.user.persistence.entity.UserEntity
 import org.springframework.stereotype.Component
 
 @Component

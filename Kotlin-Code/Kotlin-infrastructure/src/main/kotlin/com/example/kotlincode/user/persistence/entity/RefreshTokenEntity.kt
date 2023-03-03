@@ -1,4 +1,4 @@
-package com.example.kotlincode.domain.user.persistence.entity
+package com.example.kotlincode.user.persistence.entity
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash

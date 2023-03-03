@@ -1,9 +1,9 @@
-package com.example.kotlincode.domain.user.persistence
+package com.example.kotlincode.user.persistence
 
-import com.example.kotlincode.domain.user.domain.User
-import com.example.kotlincode.domain.user.mapper.UserMapper
-import com.example.kotlincode.domain.user.spi.UserSpi
-import com.example.kotlincode.global.annotation.Adapter
+import com.example.kotlincode.user.User
+import com.example.kotlincode.user.mapper.UserMapper
+import com.example.kotlincode.user.spi.UserSpi
+import com.example.kotlincode.common.annotation.Adapter
 
 @Adapter
 class UserPersistenceAdapter(

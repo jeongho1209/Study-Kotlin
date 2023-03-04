@@ -8,7 +8,9 @@ plugins {
 dependencies {
 
     // multi module
+    implementation(project(":Kotlin-application"))
     implementation(project(":Kotlin-domain"))
+    implementation(project(":Kotlin-presentation"))
 
     // jpa
     implementation(Dependency.JPA)

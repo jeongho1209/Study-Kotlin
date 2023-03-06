@@ -7,6 +7,7 @@ plugins {
 dependencies {
     // impl project
     implementation(project(":Kotlin-domain"))
+    implementation(project(":Kotlin-application"))
 
     // web
     implementation(Dependency.WEB)

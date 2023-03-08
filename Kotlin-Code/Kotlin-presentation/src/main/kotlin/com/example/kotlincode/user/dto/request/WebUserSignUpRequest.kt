@@ -1,4 +1,4 @@
-package com.example.kotlincode.domain.user.presentation.dto.request
+package com.example.kotlincode.user.dto.request
 
 import javax.validation.constraints.NotBlank
 

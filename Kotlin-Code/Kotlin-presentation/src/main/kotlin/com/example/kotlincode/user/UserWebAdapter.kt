@@ -1,8 +1,8 @@
-package com.example.kotlincode.domain.user.presentation
+package com.example.kotlincode.user
 
 import com.example.kotlincode.domain.user.api.UserSignUpApi
 import com.example.kotlincode.domain.user.api.dto.DomainUserSignUpRequest
-import com.example.kotlincode.domain.user.presentation.dto.request.WebUserSignUpRequest
+import com.example.kotlincode.user.dto.request.WebUserSignUpRequest
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid

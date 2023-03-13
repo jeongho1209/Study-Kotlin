@@ -7,15 +7,12 @@ import org.springframework.stereotype.Service
 
 @Service
 class AuthDetailsService(
-        private val userFacade: UserFacade
+    private val userFacade: UserFacade
 ) : UserDetailsService {
 
     override fun loadUserByUsername(accountId: String): UserDetails {
         val user = userFacade.getByEmail(accountId)
 
-        return AuthDetails(
-                user = user
-        )
+        return AuthDetails(user)
     }
-
 }

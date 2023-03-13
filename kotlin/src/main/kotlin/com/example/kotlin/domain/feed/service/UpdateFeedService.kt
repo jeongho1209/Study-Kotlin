@@ -22,8 +22,9 @@ class UpdateFeedService(
             throw CannotUpdateFeedException.EXCEPTION
         }
 
-        feed.updateFeed(request.title,
-                request.content)
+        feed.updateFeed(
+            request.title,
+            request.content,
+        )
     }
-
 }

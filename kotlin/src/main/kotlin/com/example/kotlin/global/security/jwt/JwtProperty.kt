@@ -9,5 +9,4 @@ object JwtProperty {
     const val HEADER = "Authorization"
 
     const val PREFIX = "Bearer "
-
 }

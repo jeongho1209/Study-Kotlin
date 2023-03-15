@@ -16,5 +16,4 @@ class ExceptionHandler {
                 HttpStatus.valueOf(e.status)
         )
     }
-
 }

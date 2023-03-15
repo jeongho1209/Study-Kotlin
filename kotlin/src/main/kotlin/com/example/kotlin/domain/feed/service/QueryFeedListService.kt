@@ -13,8 +13,10 @@ class QueryFeedListService(
 
     @Transactional(readOnly = true)
     fun execute(): QueryFeedListResponse {
-        val feedList = feedRepository.queryFeedList()
-        return QueryFeedListResponse(feedList.map { FeedElement(it) })
+        return QueryFeedListResponse(
+            feedRepository.queryFeedList().map {
+                FeedElement(it)
+            }
+        )
     }
-
 }

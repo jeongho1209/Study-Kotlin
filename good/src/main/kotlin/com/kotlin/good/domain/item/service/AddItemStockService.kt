@@ -12,13 +12,9 @@ class AddItemStockService(
 ) {
 
     @Transactional
-    fun execute(
-        request: AddItemStockRequest,
-        itemId: UUID
-    ) {
+    fun execute(request: AddItemStockRequest, itemId: UUID) {
         val item = itemFacade.getItemById(itemId)
 
         item.plusStock(request.stock)
     }
-
 }

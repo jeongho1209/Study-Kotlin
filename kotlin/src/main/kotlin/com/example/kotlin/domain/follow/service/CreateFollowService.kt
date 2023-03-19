@@ -37,21 +37,17 @@ class CreateFollowService(
 
         user.addFollowing()
 
-        return addFollow(user, targetUser)
-    }
-
-    private fun addFollow(user: User, targetUser: User): FollowResponse {
         followRepository.save(
-                Follow(
-                        id = 0,
-                        user = user,
-                        targetUser = targetUser
-                )
+            Follow(
+                id = 0,
+                user = user,
+                targetUser = targetUser,
+            )
         )
 
         return FollowResponse(
-                followed = followFacade.checkFollowed(user, targetUser),
-                followCounts = user.followedCounts
+            followed = followFacade.checkFollowed(user, targetUser),
+            followCounts = user.followedCounts,
         )
     }
 }

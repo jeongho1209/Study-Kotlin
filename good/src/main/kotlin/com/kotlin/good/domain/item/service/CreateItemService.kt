@@ -23,7 +23,7 @@ class CreateItemService(
                 stock = request.stock,
                 price = request.price,
                 itemInfo = request.itemInfo,
-                markCount = 0
+                markCount = 0,
             )
         )
 

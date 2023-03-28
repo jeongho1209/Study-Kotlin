@@ -15,19 +15,19 @@ class CreateItemService(
 
     @Transactional
     fun execute(request: CreateItemRequest): CreateItemResponse {
+        val (name, stock, price, itemInfo) = request
 
         itemRepository.save(
             Item(
                 id = UUID.randomUUID(),
-                name = request.name,
-                stock = request.stock,
-                price = request.price,
-                itemInfo = request.itemInfo,
+                name = name,
+                stock = stock,
+                price = price,
+                itemInfo = itemInfo,
                 markCount = 0,
             )
         )
 
         return CreateItemResponse(request.name + "상품 등록 완료")
     }
-
 }

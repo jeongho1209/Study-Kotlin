@@ -25,5 +25,4 @@ class DeleteFeedService(
 
         feedRepository.delete(feed)
     }
-
 }

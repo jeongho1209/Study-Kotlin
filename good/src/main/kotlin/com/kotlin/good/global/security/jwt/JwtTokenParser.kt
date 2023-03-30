@@ -19,6 +19,14 @@ class JwtTokenParser(
     private val authDetailsService: AuthDetailsService
 ) {
 
+    fun getAuthentication(token: String): Authentication {
+        val claims = getClaims(token)
+        val email = claims.subject
+        val authDetails = authDetailsService.loadUserByUsername(email)
+
+        return UsernamePasswordAuthenticationToken(authDetails, "", authDetails.authorities)
+    }
+
     private fun getClaims(token: String): Claims {
         return try {
             Jwts.parser()
@@ -32,13 +40,4 @@ class JwtTokenParser(
             }
         }
     }
-
-    fun getAuthentication(token: String): Authentication {
-        val claims = getClaims(token)
-        val email = claims.subject
-        val authDetails = authDetailsService.loadUserByUsername(email)
-
-        return UsernamePasswordAuthenticationToken(authDetails, "", authDetails.authorities)
-    }
-
 }

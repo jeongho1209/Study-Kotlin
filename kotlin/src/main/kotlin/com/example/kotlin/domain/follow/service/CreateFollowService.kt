@@ -14,9 +14,9 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CreateFollowService(
-        private val userFacade: UserFacade,
-        private val followFacade: FollowFacade,
-        private val followRepository: FollowRepository
+    private val userFacade: UserFacade,
+    private val followFacade: FollowFacade,
+    private val followRepository: FollowRepository
 ) {
 
     @Transactional
@@ -25,13 +25,9 @@ class CreateFollowService(
 
         val targetUser = userFacade.getUserById(request.targetUserId)
 
-        if (user == targetUser) {
-            throw CannotFollowYourselfException.EXCEPTION
-        }
+        checkUserEqualsTargetUser(user, targetUser)
 
-        if (followFacade.checkFollowed(user, targetUser)) {
-            throw FollowExistException.EXCEPTION
-        }
+        checkFollowExist(user, targetUser)
 
         targetUser.addFollower()
 
@@ -49,5 +45,23 @@ class CreateFollowService(
             followed = followFacade.checkFollowed(user, targetUser),
             followCounts = user.followedCounts,
         )
+    }
+
+    private fun checkFollowExist(
+        user: User,
+        targetUser: User
+    ) {
+        if (followFacade.checkFollowed(user, targetUser)) {
+            throw FollowExistException.EXCEPTION
+        }
+    }
+
+    private fun checkUserEqualsTargetUser(
+        user: User,
+        targetUser: User
+    ) {
+        if (user.id == targetUser.id) {
+            throw CannotFollowYourselfException.EXCEPTION
+        }
     }
 }

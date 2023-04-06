@@ -12,11 +12,6 @@ class QueryFeedListService(
 ) {
 
     @Transactional(readOnly = true)
-    fun execute(): QueryFeedListResponse {
-        return QueryFeedListResponse(
-            feedRepository.queryFeedList().map {
-                FeedElement(it)
-            }
-        )
-    }
+    fun execute(): QueryFeedListResponse =
+        QueryFeedListResponse(feedRepository.queryFeedList().map { FeedElement(it) })
 }

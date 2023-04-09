@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class DeleteFeedService(
-        private val feedFacade: FeedFacade,
-        private val userFacade: UserFacade,
-        private val feedRepository: FeedRepository
+    private val feedFacade: FeedFacade,
+    private val userFacade: UserFacade,
+    private val feedRepository: FeedRepository
 ) {
 
     @Transactional

@@ -13,7 +13,6 @@ class QueryMyInfoService(
     @Transactional(readOnly = true)
     fun execute(): QueryMyInfoResponse {
         val user = userFacade.getCurrentUser()
-
         return QueryMyInfoResponse(
             followingCounts = user.followingCounts,
             followedCounts = user.followedCounts,
